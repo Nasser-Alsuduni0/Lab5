@@ -3,7 +3,7 @@ import pathlib
 
 import pytest
 
-pytestmark = [pytest.mark.behavioural, pytest.mark.slow]
+pytestmark = [pytest.mark.behavioural]
 
 GOLDEN_FILE = pathlib.Path(__file__).parent / "golden_scores.csv"
 
@@ -27,6 +27,7 @@ def test_directional_amount(real_model, sample_txn):
     assert large >= small - 1e-6
 
 
+@pytest.mark.slow
 def test_golden_scores_match_reference(real_model):
     """5,000 reference scores, regenerated only through a deliberate,
     reviewed step (scripts/regen_golden.py) — never silently, just to
